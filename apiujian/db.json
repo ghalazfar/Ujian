@@ -1,0 +1,244 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "Andi",
+      "email": "andi@gmail.com",
+      "password": "password"
+    },
+    {
+      "username": "Budi",
+      "email": "budi@gmail.com",
+      "password": "hunter12",
+      "id": "2"
+    }
+  ],
+  "movies": [
+    {
+      "id": "1",
+      "title": "Avengers",
+      "desc": "FILM AVENGERS",
+      "img": "https://c-sf.smule.com/sf/s79/arr/c8/9d/61f7825b-1066-418c-9200-76e28e5ae497.jpg",
+      "shift": [
+        {
+          "id": "1",        
+          "kursi": [
+            {
+              "id": "1",
+              "nama": "A1",
+              "booked": false
+            },
+            {
+              "id": "2",
+              "nama": "A2",
+              "booked": false
+            },
+            {
+              "id": "3",
+              "nama": "A3",
+              "booked": false
+            },
+            {
+              "id": "4",
+              "nama": "B1",
+              "booked": false
+            },
+            {
+              "id": "5",
+              "nama": "B2",
+              "booked": false
+            },
+            {
+              "id": "6",
+              "nama": "B3",
+              "booked": false
+            }
+          ]  
+        },
+        {
+          "id": "2",        
+          "kursi": [
+            {
+              "id": "1",
+              "nama": "A1",
+              "booked": false
+            },
+            {
+              "id": "2",
+              "nama": "A2",
+              "booked": false
+            },
+            {
+              "id": "3",
+              "nama": "A3",
+              "booked": false
+            },
+            {
+              "id": "4",
+              "nama": "B1",
+              "booked": false
+            },
+            {
+              "id": "5",
+              "nama": "B2",
+              "booked": false
+            },
+            {
+              "id": "6",
+              "nama": "B3",
+              "booked": false
+            }
+          ]  
+        },
+        {
+          "id": "3",        
+          "kursi": [
+            {
+              "id": "1",
+              "nama": "A1",
+              "booked": false
+            },
+            {
+              "id": "2",
+              "nama": "A2",
+              "booked": false
+            },
+            {
+              "id": "3",
+              "nama": "A3",
+              "booked": false
+            },
+            {
+              "id": "4",
+              "nama": "B1",
+              "booked": false
+            },
+            {
+              "id": "5",
+              "nama": "B2",
+              "booked": false
+            },
+            {
+              "id": "6",
+              "nama": "B3",
+              "booked": false
+            }
+          ]  
+        }
+      ]  
+    },
+    {
+      "id": "2",
+      "title": "Batman v Superman",
+      "desc": "FILM BATMAN",
+      "img": "https://pbs.twimg.com/profile_images/713839403190325248/skI17zue_400x400.jpg",
+      "shift": [
+        {
+          "id": "1",        
+          "kursi": [
+            {
+              "id": "1",
+              "nama": "A1",
+              "booked": false
+            },
+            {
+              "id": "2",
+              "nama": "A2",
+              "booked": false
+            },
+            {
+              "id": "3",
+              "nama": "A3",
+              "booked": false
+            },
+            {
+              "id": "4",
+              "nama": "B1",
+              "booked": false
+            },
+            {
+              "id": "5",
+              "nama": "B2",
+              "booked": false
+            },
+            {
+              "id": "6",
+              "nama": "B3",
+              "booked": false
+            }
+          ]  
+        },
+        {
+          "id": "2",        
+          "kursi": [
+            {
+              "id": "1",
+              "nama": "A1",
+              "booked": false
+            },
+            {
+              "id": "2",
+              "nama": "A2",
+              "booked": false
+            },
+            {
+              "id": "3",
+              "nama": "A3",
+              "booked": false
+            },
+            {
+              "id": "4",
+              "nama": "B1",
+              "booked": false
+            },
+            {
+              "id": "5",
+              "nama": "B2",
+              "booked": false
+            },
+            {
+              "id": "6",
+              "nama": "B3",
+              "booked": false
+            }
+          ]  
+        },
+        {
+          "id": "3",        
+          "kursi": [
+            {
+              "id": "1",
+              "nama": "A1",
+              "booked": false
+            },
+            {
+              "id": "2",
+              "nama": "A2",
+              "booked": false
+            },
+            {
+              "id": "3",
+              "nama": "A3",
+              "booked": false
+            },
+            {
+              "id": "4",
+              "nama": "B1",
+              "booked": false
+            },
+            {
+              "id": "5",
+              "nama": "B2",
+              "booked": false
+            },
+            {
+              "id": "6",
+              "nama": "B3",
+              "booked": false
+            }
+          ]  
+        }
+      ]
+    }
+  ]
+}
