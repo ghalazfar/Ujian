@@ -25,8 +25,8 @@ class LoginPage extends Component {
         if (this.props.authGlobal.email === "") {
             console.log(this.props.authGlobal.email)
             return (
-                <div className="login-background">
-                    <div className="container">
+                <div className="container-fluid">
+                    <div className="col-xs-4 col-xs-push-4">
                         <div className="card card-container">
                             <img className="profile-img-card" src="https://assets.change.org/photos/8/ac/aq/ouaCAQdZspeVZCl-128x128-noPad.jpg" alt="" />                            
                             <p id="profile-name" className="profile-name-card"></p>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { DropdownButton, MenuItem, Button } from 'react-bootstrap';
+import { DropdownButton, MenuItem, Button, Label } from 'react-bootstrap';
 import { API } from '../supports/api-url/API.js'
 
 class Schedule extends Component {
@@ -31,12 +31,21 @@ class Schedule extends Component {
         this.setState({ seatList: seatList, shiftNum: shiftNum})
     }
 
+    renderLayar = () => {
+        if (this.state.shiftNum != undefined){
+            return (
+                <Label className="col-xs-12" style={{marginLeft: "7px", marginBottom: "50px" }}>Layar</Label>
+            )
+        }    
+    }
+
     renderSeat = () => {
         const seatbox = this.state.seatList.map((seatIndex) =>
             this.checkIfBooked(seatIndex)
         )
         return (
             <div className="col-xs-5">
+                {this.renderLayar()}
                 <div className="row">
                     {seatbox}
                 </div>
@@ -54,13 +63,14 @@ class Schedule extends Component {
         this.setState({ seatList: bookSeatList })
         const { selectedMovie } = this.props.selectedMovie
         const { movies } = this.state
-        const { id, title, desc, img, shift } = movies
+        const { id, title, desc, img, shift, imdb } = movies
         axios.put(API + '/movies/' + selectedMovie, {
             id: id,
             title: title,
             desc: desc,
             img: img,
-            shift: shift
+            shift: shift,
+            imdb: imdb
         }).then((response) => {
             this.setState({ });  
             alert("Anda telah berhasil membayar sebesar Rp."+this.state.totalCost)
@@ -141,17 +151,19 @@ class Schedule extends Component {
     }
 
     renderCheckout = () => {
-        // const kursi = this.state.bookedSeats
-        // console.log(kursi)   
-        return (
-            <div className="col-xs-7" align="left"> 
-                <h3>
-                    {/* Kursi: {kursi} */}
-                    Total Harga: Rp. {this.state.totalCost}
-                </h3>           
-                <input type="button" className="btn btn-warning" value="Check Out" onClick={() => this.onCheckoutClick()} />
-            </div>
-        )
+        if (this.state.totalCost != undefined)  { 
+            return (
+                <div className="col-xs-7 col-xs-push-2"> 
+                    <h3>
+                        Kursi: {(this.state.bookedSeats.join(', '))}
+                    </h3>    
+                    <h3>
+                        Total Harga: Rp. {this.state.totalCost}
+                    </h3>           
+                    <input type="button" className="btn btn-warning" value="Check Out" onClick={() => this.onCheckoutClick()} />
+                </div>
+            )
+        }    
     }
 
     renderSchedule = () => {
@@ -173,7 +185,7 @@ class Schedule extends Component {
                         </div>         
                     </div>
                 </div>            
-                <div className="row col-xs-7 col-xs-push-3">
+                <div className="row col-xs-7 col-xs-push-4" style={{ paddingTop: "50px"}}>
                     {this.renderSeat()}
                 </div>                    
                 <div>

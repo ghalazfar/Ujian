@@ -34,7 +34,7 @@ class Header extends Component {
                 <Navbar inverse collapseOnSelect>
                     <Navbar.Header>
                         <Navbar.Brand>
-                        <Link to="/">Homepage</Link>
+                        <Link to="/">TWENTIWAN</Link>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>
