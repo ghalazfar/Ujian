@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Carousel } from 'react-bootstrap'
 import { API } from '../supports/api-url/API.js'
 import { onMovieSelect } from '../actions';
 
@@ -19,17 +20,23 @@ class HomePage extends Component {
 
     renderMovieList = () => {
         return this.state.movies.map((movie) =>
-            <div className="col-xs-3">                
-                <Link to="/schedule"><img onClick={() => this.props.onMovieSelect(movie.id)} style={{ margin: "auto"}} className="img-responsive" src={movie.img} alt="" /></Link>
-                {movie.title}
-            </div>
+            <Carousel.Item >                
+                <Link to="/schedule">
+                <img onClick={() => this.props.onMovieSelect(movie.id)} style={{ width: "900px", height: "500px" }} src={movie.img} alt="" />
+                <Carousel.Caption>
+                    <h3>{movie.title}</h3>
+                </Carousel.Caption>
+                </Link>                
+            </Carousel.Item>
         )
     }
 
     render(){
         return (
             <div className="container-fluid">
+                <Carousel interval="3500" className="col-xs-8 col-xs-push-2" >
                 {this.renderMovieList()}
+                </Carousel>
             </div>
         )
     }

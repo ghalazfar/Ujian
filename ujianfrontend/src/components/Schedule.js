@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
+import { DropdownButton, MenuItem, Button } from 'react-bootstrap';
 import { API } from '../supports/api-url/API.js'
 
 class Schedule extends Component {
@@ -28,7 +28,7 @@ class Schedule extends Component {
         for (var i in kursi){
             seatList.push(kursi[i])
         }
-        this.setState({ seatList: seatList})
+        this.setState({ seatList: seatList, shiftNum: shiftNum})
     }
 
     renderSeat = () => {
@@ -36,11 +36,11 @@ class Schedule extends Component {
             this.checkIfBooked(seatIndex)
         )
         return (
-            <div>
-                {seatbox}
-                <input type="button" className="btn btn-warning" value="Check Out" onClick={() => this.onCheckoutClick()} />
-            </div>
-            
+            <div className="col-xs-5">
+                <div className="row">
+                    {seatbox}
+                </div>
+            </div>            
         )
     }
 
@@ -63,7 +63,7 @@ class Schedule extends Component {
             shift: shift
         }).then((response) => {
             this.setState({ });  
-            alert("Check Out Berhasil!")
+            alert("Anda telah berhasil membayar sebesar Rp."+this.state.totalCost)
             console.log(response);      
         }).catch((err) => {
             alert("Check Out Gagal!")
@@ -74,21 +74,21 @@ class Schedule extends Component {
     checkIfBooked = (seatIndex) => {
         if(seatIndex.booked == "empty") {        
             return (
-                <div className="col-xs-4">
-                    <input type="button" className="btn btn-primary" value={seatIndex.nama} onClick={() => this.selectBox((seatIndex.id)-1)} />
+                <div className="col-xs-1">
+                    <input type="button" className="btn btn-primary" value=" " onClick={() => this.selectBox((seatIndex.id)-1)} />
                 </div>
             )
         }
         else if(seatIndex.booked == "selected") { 
             return (
-                <div class="col-xs-4">
-                    <input type="button" className="btn btn-success active" value={seatIndex.nama} onClick={() => this.unselectBox((seatIndex.id)-1)}/>
+                <div class="col-xs-1">
+                    <input type="button" className="btn btn-success active" value=" " onClick={() => this.unselectBox((seatIndex.id)-1)}/>
                 </div>
             )
         }    
         return (
-            <div className="col-xs-4">
-                <input type="button" className="btn btn-danger" value={seatIndex.nama} disabled />
+            <div className="col-xs-1">
+                <input type="button" className="btn btn-danger" value=" " disabled />
             </div>
         )            
     }
@@ -96,54 +96,110 @@ class Schedule extends Component {
     selectBox = (seatIndex) => {      
         const bookSeatList = this.state.seatList        
         bookSeatList[seatIndex].booked = "selected"
-        this.setState({ seatList: bookSeatList })               
+        const totalCost = this.countPrice()
+        const bookedSeats = this.bookedSeats()
+        this.setState({ seatList: bookSeatList, totalCost: totalCost, bookedSeats: bookedSeats })               
     }
 
     unselectBox = (seatIndex) => {      
         const bookSeatList = this.state.seatList        
         bookSeatList[seatIndex].booked = "empty"
-        this.setState({ seatList: bookSeatList })               
+        const totalCost = this.countPrice()
+        const bookedSeats = this.bookedSeats()
+        this.setState({ seatList: bookSeatList, totalCost: totalCost, bookedSeats: bookedSeats })       
+    }
+
+    countPrice = () => {
+        const bookSeatList = this.state.seatList
+        var ticketCount = 0
+        for (var i in bookSeatList){
+            if (bookSeatList[i].booked == "selected"){
+                ticketCount++
+            }
+        }
+        var price = 0
+        if (this.state.shiftNum == 0){
+            price = 25000
+        }
+        else if (this.state.shiftNum == 1){
+            price = 35000
+        }
+        return(
+            ticketCount*price
+        ) 
+    }
+
+    bookedSeats = () => {
+        const bookSeatList = this.state.seatList
+        var bookedSeats = []
+        for (var i in bookSeatList){
+            if (bookSeatList[i].booked == "selected"){
+                bookedSeats.push(bookSeatList[i].nama)
+            }
+        }
+        return bookedSeats
+    }
+
+    renderCheckout = () => {
+        // const kursi = this.state.bookedSeats
+        // console.log(kursi)   
+        return (
+            <div className="col-xs-7" align="left"> 
+                <h3>
+                    {/* Kursi: {kursi} */}
+                    Total Harga: Rp. {this.state.totalCost}
+                </h3>           
+                <input type="button" className="btn btn-warning" value="Check Out" onClick={() => this.onCheckoutClick()} />
+            </div>
+        )
     }
 
     renderSchedule = () => {
         return (
-            <div className="container-fluid">
-            <div className="row">
-                <div className="col-xs-3">                
-                    <img style={{ margin: "auto"}} className="img-responsive" src={this.state.movies.img} alt="" />               
-                </div>
-                <div className="col-xs-9" align="left">                
-                    <h1>{this.state.movies.title}</h1> 
-                    <h4>{this.state.movies.desc}</h4>           
-                </div>
-            </div>
-            <div className="row">
-                <Button className="col-xs-2" onClick={() => this.setSeat(0)}>Shift 1</Button>
-                <Button className="col-xs-2" onClick={() => this.setSeat(1)}>Shift 2</Button>
-                <Button className="col-xs-2" onClick={() => this.setSeat(2)}>Shift 3</Button>
-            </div>
-            <div className="row col-xs-6">
-                {this.renderSeat()}
-            </div>
+            <div>
+                <div className="container-fluid">
+                    <div className="col-xs-3">                
+                        <img style={{ margin: "auto"}} className="img-responsive" src={this.state.movies.img} alt="" />               
+                    </div>
+                    <div className="col-xs-7" align="left">                
+                        <h1>{this.state.movies.title}</h1> 
+                        <h4>{this.state.movies.desc}</h4>  
+                        <div className="row">
+                        <Button href={this.state.movies.imdb}>IMDB</Button>
+                        <DropdownButton title="Schedule">
+                            <MenuItem eventKey="1" onClick={() => this.setSeat(0)}>Morning</MenuItem>
+                            <MenuItem eventKey="2" onClick={() => this.setSeat(1)}>Evening</MenuItem>
+                        </DropdownButton>
+                        </div>         
+                    </div>
+                </div>            
+                <div className="row col-xs-7 col-xs-push-3">
+                    {this.renderSeat()}
+                </div>                    
+                <div>
+                    {this.renderCheckout()}
+                </div>  
             </div>
         )
     }
 
     render() {
-        console.log(this.props.authGlobal.cookieCheck)
-        if (this.props.authGlobal.cookieCheck === true){
-            if (this.props.authGlobal.username == ""){
-                return <Redirect to='/login' />
+        if (this.props.selectedMovie.selectedMovie !== 0){
+            if (this.props.authGlobal.cookieCheck === true){
+                if (this.props.authGlobal.username == ""){
+                    return <Redirect to='/login' />
+                }
+                return (
+                    <div className="container-fluid">
+                        {this.renderSchedule()}
+                    </div>
+                )
             }
-            return (
-                <div className="container-fluid">
-                    {this.renderSchedule()}
-                </div>
+            return(
+                <div>LOADING</div>
             )
         }
-        return(
-            <div>LOADING</div>
-        )    
+        return <Redirect to='/' />         
     }
 }
 
