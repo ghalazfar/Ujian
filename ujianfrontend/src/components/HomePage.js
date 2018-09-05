@@ -20,7 +20,7 @@ class HomePage extends Component {
     renderMovieList = () => {
         return this.state.movies.map((movie) =>
             <div className="col-xs-3">                
-                <Link to="/Schedule"><img onClick={() => this.props.onMovieSelect(movie.id)} style={{ margin: "auto"}} className="img-responsive" src={movie.img} alt="" /></Link>
+                <Link to="/schedule"><img onClick={() => this.props.onMovieSelect(movie.id)} style={{ margin: "auto"}} className="img-responsive" src={movie.img} alt="" /></Link>
                 {movie.title}
             </div>
         )

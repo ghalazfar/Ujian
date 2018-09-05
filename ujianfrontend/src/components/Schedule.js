@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Button, ButtonGroup } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { API } from '../supports/api-url/API.js'
-import { onMovieSelect } from '../actions';
 
 class Schedule extends Component {
     state = {
         movies: [],
+        seatList: []
     }
 
     componentWillMount() {
@@ -21,23 +21,88 @@ class Schedule extends Component {
         })       
     }
 
+    setSeat = (shiftNum) => {
+        const { shift } = this.state.movies
+        const { kursi } = shift[shiftNum]
+        const seatList = []
+        for (var i in kursi){
+            seatList.push(kursi[i])
+        }
+        this.setState({ seatList: seatList})
+    }
+
     renderSeat = () => {
-        const { shift } = this.state.movies        
-        const { kursi } = shift[0]
-        console.log(kursi)
-        return kursi.map((seat) =>            
-            this.checkIfBooked(seat)
+        const seatbox = this.state.seatList.map((seatIndex) =>
+            this.checkIfBooked(seatIndex)
+        )
+        return (
+            <div>
+                {seatbox}
+                <input type="button" className="btn btn-warning" value="Check Out" onClick={() => this.onCheckoutClick()} />
+            </div>
+            
         )
     }
 
-    checkIfBooked = (seat) => {
-        if(seat.booked == false) {
+    onCheckoutClick = () => {
+        const bookSeatList = this.state.seatList
+        for (var i in bookSeatList){
+            if (bookSeatList[i].booked == "selected"){        
+                bookSeatList[i].booked = "booked"
+            }
+        }
+        this.setState({ seatList: bookSeatList })
+        const { selectedMovie } = this.props.selectedMovie
+        const { movies } = this.state
+        const { id, title, desc, img, shift } = movies
+        axios.put(API + '/movies/' + selectedMovie, {
+            id: id,
+            title: title,
+            desc: desc,
+            img: img,
+            shift: shift
+        }).then((response) => {
+            this.setState({ });  
+            alert("Check Out Berhasil!")
+            console.log(response);      
+        }).catch((err) => {
+            alert("Check Out Gagal!")
+            console.log(err);
+        })         
+    }
+
+    checkIfBooked = (seatIndex) => {
+        if(seatIndex.booked == "empty") {        
             return (
-                <div class="checkbox">
-                    <label><input ref={seat.id} type="checkbox" value="free" onClick={() => this.onCheckBoxClick(kursi.id)} />{kursi.id}</label>
+                <div className="col-xs-4">
+                    <input type="button" className="btn btn-primary" value={seatIndex.nama} onClick={() => this.selectBox((seatIndex.id)-1)} />
                 </div>
             )
         }
+        else if(seatIndex.booked == "selected") { 
+            return (
+                <div class="col-xs-4">
+                    <input type="button" className="btn btn-success active" value={seatIndex.nama} onClick={() => this.unselectBox((seatIndex.id)-1)}/>
+                </div>
+            )
+        }    
+        return (
+            <div className="col-xs-4">
+                <input type="button" className="btn btn-danger" value={seatIndex.nama} disabled />
+            </div>
+        )            
+    }
+
+    selectBox = (seatIndex) => {      
+        const bookSeatList = this.state.seatList        
+        bookSeatList[seatIndex].booked = "selected"
+        this.setState({ seatList: bookSeatList })               
+    }
+
+    unselectBox = (seatIndex) => {      
+        const bookSeatList = this.state.seatList        
+        bookSeatList[seatIndex].booked = "empty"
+        this.setState({ seatList: bookSeatList })               
     }
 
     renderSchedule = () => {
@@ -53,25 +118,36 @@ class Schedule extends Component {
                 </div>
             </div>
             <div className="row">
-                <Button className="col-xs-2" onClick={this.renderSeat}>Shift 1</Button>
-                <Button className="col-xs-2" onClick={this.renderSeat}>Shift 2</Button>
-                <Button className="col-xs-2" onClick={this.renderSeat}>Shift 3</Button>
+                <Button className="col-xs-2" onClick={() => this.setSeat(0)}>Shift 1</Button>
+                <Button className="col-xs-2" onClick={() => this.setSeat(1)}>Shift 2</Button>
+                <Button className="col-xs-2" onClick={() => this.setSeat(2)}>Shift 3</Button>
+            </div>
+            <div className="row col-xs-6">
+                {this.renderSeat()}
             </div>
             </div>
         )
     }
 
-    render(){        
-        console.log(this.state)
-        return (
-            <div className="container-fluid">
-                {this.renderSchedule()}
-            </div>
-        )
+    render() {
+        console.log(this.props.authGlobal.cookieCheck)
+        if (this.props.authGlobal.cookieCheck === true){
+            if (this.props.authGlobal.username == ""){
+                return <Redirect to='/login' />
+            }
+            return (
+                <div className="container-fluid">
+                    {this.renderSchedule()}
+                </div>
+            )
+        }
+        return(
+            <div>LOADING</div>
+        )    
     }
 }
 
 const mapStateToProps = (state) => {
-    return { selectedMovie: state.movie };
+    return { authGlobal: state.auth, selectedMovie: state.movie };
   }
 export default connect(mapStateToProps)(Schedule);

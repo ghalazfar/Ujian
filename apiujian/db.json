@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "username": "Andi",
       "email": "andi@gmail.com",
       "password": "password"
@@ -10,7 +10,7 @@
       "username": "Budi",
       "email": "budi@gmail.com",
       "password": "hunter12",
-      "id": "2"
+      "id": 2
     }
   ],
   "movies": [
@@ -21,111 +21,111 @@
       "img": "https://c-sf.smule.com/sf/s79/arr/c8/9d/61f7825b-1066-418c-9200-76e28e5ae497.jpg",
       "shift": [
         {
-          "id": "1",        
+          "id": "1",
           "kursi": [
             {
               "id": "1",
               "nama": "A1",
-              "booked": false
+              "booked": "booked"
             },
             {
               "id": "2",
               "nama": "A2",
-              "booked": false
+              "booked": "booked"
             },
             {
               "id": "3",
               "nama": "A3",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "4",
               "nama": "B1",
-              "booked": false
+              "booked": "booked"
             },
             {
               "id": "5",
               "nama": "B2",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "6",
               "nama": "B3",
-              "booked": false
+              "booked": "empty"
             }
-          ]  
+          ]
         },
         {
-          "id": "2",        
+          "id": "2",
           "kursi": [
             {
               "id": "1",
               "nama": "A1",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "2",
               "nama": "A2",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "3",
               "nama": "A3",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "4",
               "nama": "B1",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "5",
               "nama": "B2",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "6",
               "nama": "B3",
-              "booked": false
+              "booked": "empty"
             }
-          ]  
+          ]
         },
         {
-          "id": "3",        
+          "id": "3",
           "kursi": [
             {
               "id": "1",
               "nama": "A1",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "2",
               "nama": "A2",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "3",
               "nama": "A3",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "4",
               "nama": "B1",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "5",
               "nama": "B2",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "6",
               "nama": "B3",
-              "booked": false
+              "booked": "empty"
             }
-          ]  
+          ]
         }
-      ]  
+      ]
     },
     {
       "id": "2",
@@ -134,77 +134,77 @@
       "img": "https://pbs.twimg.com/profile_images/713839403190325248/skI17zue_400x400.jpg",
       "shift": [
         {
-          "id": "1",        
+          "id": "1",
           "kursi": [
             {
               "id": "1",
               "nama": "A1",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "2",
               "nama": "A2",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "3",
               "nama": "A3",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "4",
               "nama": "B1",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "5",
               "nama": "B2",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "6",
               "nama": "B3",
-              "booked": false
+              "booked": "empty"
             }
-          ]  
+          ]
         },
         {
-          "id": "2",        
+          "id": "2",
           "kursi": [
             {
               "id": "1",
               "nama": "A1",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "2",
               "nama": "A2",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "3",
               "nama": "A3",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "4",
               "nama": "B1",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "5",
               "nama": "B2",
-              "booked": false
+              "booked": "empty"
             },
             {
               "id": "6",
               "nama": "B3",
-              "booked": false
+              "booked": "empty"
             }
-          ]  
+          ]
         },
         {
-          "id": "3",        
+          "id": "3",
           "kursi": [
             {
               "id": "1",
@@ -236,7 +236,7 @@
               "nama": "B3",
               "booked": false
             }
-          ]  
+          ]
         }
       ]
     }
