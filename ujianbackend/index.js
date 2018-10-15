@@ -142,7 +142,7 @@ app.post('/login', (req, res) => {
     conn.query(sql, data, (err, user) => {
         if (err) throw err;
         if (user.length == 0 ) {
-            res.send({ err: "Wrong Password or Username!" })
+            res.send({ err: "Wrong Email or Password!" })
         }
         else {
             res.send(user)
