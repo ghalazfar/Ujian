@@ -1,8 +1,6 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const nodemailer = require('nodemailer')
-const xoauth2 = require('xoauth2')
 const url = bodyParser.urlencoded({ extended: false})
 const port = 2000
 const mysql = require('mysql')
@@ -10,123 +8,80 @@ const mysql = require('mysql')
 app.use(url)
 app.use(bodyParser.json())
 
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'ghalazfar@gmail.com',
-        pass: 'wmnohcstoumlktkm'
-    },
-    tls: {
-        rejectUnauthorized: false
-    }
-})
-
-var mailOptions = {
-    from: 'ghalazfar@gmail.com',
-    to: 'ghalazfar@yahoo.co.id',
-    subject: 'Tes',
-    text: 'Halo Dunia!',
-    html: '<h1>ini email2</h1>'
-}
-
 const conn = mysql.createConnection({
     host: 'localhost',
-    user: 'ghalazfar',
-    password: 'kronos12',
-    database: 'practice',
+    user: '',
+    password: '',
+    database: 'hotelbertasbih',
     port: '3306',
 })
 
 app.get('/', (req, res) => {
-    res.send('<h1>Selamat Datang!</h1>');
+    res.send('<h1>Hotel Bertasbih</h1>');
 });
 
-app.get('/books', (req, res) => {
-    var sql = `SELECT * FROM books;`;
-    conn.query(sql,(err,results) => {
-        if(err) throw err;
-            res.send(results);
-   
-    })
+//get kamar
+app.get('/kamar', (req, res) => {
+    const { category } = req.query
+    var sql = ''
+    if (category == undefined) {
+        sql = `SELECT * FROM tablekamar;`;
+        conn.query(sql,(err,results) => {
+            if(err) throw err;
+                res.send(results);   
+        })
+    }    
+    else {
+        sql = `SELECT k.* 
+                FROM tablekamar k
+                JOIN tablecategory c
+                ON k.categoryid = c.id
+                WHERE c.namacategory = '${category}';`
+        conn.query(sql,(err,results) => {
+            if(err) throw err;
+                res.send(results);   
+        })        
+    }    
 });
 
-app.get('/sendemail', (req, res) => {
-    transporter.sendMail(mailOptions, (err, res) => {
-        if (err) {
-            console.log('error!')
-        }
-        else {
-            console.log('sukses!')
-        }
-    })
-});
-
-
-app.post('/books',(req, res)=>{
-    const { idbook, title, author, status, catid } = req.body;
-    var data = {
-        idbook: idbook,
-        title: title,
-        author: author,
-        status: status
-    }
-    
-    var sql1 = 'INSERT INTO books SET ?';
-    conn.query(sql1, data, (err, results) => {
-        if(err) throw err;
-        console.log(results);
-
-        if(catid.length !== 0) {
-            var sql2 = "INSERT INTO bookcat (bookid, catid) VALUES ?"
-            var value = []
-            for(var i in catid) {  
-                value.push([results.insertId, catid[i]])
-            }
-            conn.query(sql2, [value], (err, results2) => {
-            if (err) throw err;
-            sql = "SELECT * FROM books"
-            conn.query(sql,(err,results3)=>{
-                if(err)throw err;
-                res.send(results3);
-            })
-            console.log(results2);  
-            })     
-              
-        }         
-        
-    })
-
+//create kamar
+app.post('/kamar',(req, res)=>{
+    const { nomorkamar, categoryid, harga } = req.body;
+    const data = { nomorkamar, categoryid, harga }    
+    var sql = "INSERT INTO tablekamar SET ?"
+    conn.query(sql, data, (err, results) => {
+        if (err) throw err;
+        sql = "SELECT * FROM tablekamar"
+        conn.query(sql,(err,results2)=>{
+            if(err)throw err;
+            res.send(results2);
+        })
+    })                   
 })
 
-app.get('/search', (req, res) => {   
-    var sql=`SELECT b.*, bc.catid
-    FROM books b 
-    JOIN bookcat bc 
-    ON b.idbook = bc.bookid
-    WHERE catid in (${req.query.catid})
-    GROUP BY b.idbook
-    HAVING COUNT(catid) = ${req.query.catid.length};`;
-    //line 2,3,4: tabel book jadi b, bookcat jadi bc, digabung dimana b.idbook sama dengan bc.bookid,
-    //line 1,5: ambil tabel yang sudah digabung dengan syarat catid = di query (/search?catid=1)
-    //line 6,7: diurutkan berdasarkan idbook, hanya memasukkan buku yg catid-nya sepanjang query catid
-    conn.query(sql, (err, results) => {
-        if(err) throw err;            
-        res.send(results);
-    })    
+//update kamar
+app.put('/kamar/:id', (req,res) => {
+    const { id } = req.params;
+    const { nomorkamar, categoryid, harga } = req.body;
+    const data = { nomorkamar, categoryid, harga }    
+    var sql = `UPDATE tablekamar SET ? WHERE id = ${id}`
+    conn.query(sql, data, (err, results) => {
+        if (err) throw err;
+        sql = "SELECT * FROM tablekamar"
+        conn.query(sql,(err,results2)=>{
+            if(err)throw err;
+            res.send(results2);
+        })
+    })
 })
 
-
-app.delete('/books/:id', (req, res) => {
+//delete kamar
+app.delete('/kamar/:id', (req, res) => {
     const { id } = req.params
-    var sql = `DELETE b.*, bc.*
-    FROM books b 
-    JOIN bookcat bc 
-    ON b.idbook = bc.bookid 
-    WHERE b.idbook = '${id}'`
+    var sql = `DELETE k.* FROM tablekamar k WHERE k.id = '${id}'`
     conn.query(sql, (err, results) => {
-        if(err) throw err;      
-  
-        var sql = `SELECT * FROM books;`;
+        if(err) throw err;    
+        var sql = `SELECT * FROM tablekamar;`;
         conn.query(sql,(err,results) => {
             if(err) throw err;
                 res.send(results);  
@@ -134,79 +89,84 @@ app.delete('/books/:id', (req, res) => {
     })    
 })
 
-app.put('/books/:id', (req,res) => {
-    const { id } = req.params;
-    const { title, author, status, catid } = req.body;
-    const data = { 
-        title: title,
-        author: author,
-        status: status
-    }
-    var sql = `UPDATE books SET ? WHERE idbook = ${id}`;
+//create category
+app.post('/category',(req, res)=>{
+    const { namacategory } = req.body;
+    const data = { namacategory }    
+    var sql = "INSERT INTO tablecategory SET ?"
     conn.query(sql, data, (err, results) => {
-        if(err) throw err;
-        sql = `DELETE FROM bookcat WHERE bookid = ${id}`;
-        conn.query(sql, (err1, results1) => {
-            if(err1) throw err1;
-            if(catid.length !== 0) {
-                var sql2 = "INSERT INTO bookcat (bookid, catid) VALUES ?"
-                var value = []
-                for(var i in catid) {  
-                    value.push([id, catid[i]])
-                }
-                conn.query(sql2, [value], (err, results2) => {
-                    if (err) throw err;
-                    sql = "SELECT * FROM books"
-                    conn.query(sql,(err,results3)=>{
-                        if(err)throw err;
-                        res.send(results3);
-                    })
-                })     
-                  
-            }   
-            else {
-                sql = `SELECT * FROM books;`;
-                conn.query(sql, (err2, results2) => {
-                    if(err2) throw err2;
-                    
-                    res.send(results2);
-                })
-            }
+        if (err) throw err;
+        sql = "SELECT * FROM tablecategory"
+        conn.query(sql,(err,results2)=>{
+            if(err)throw err;
+            res.send(results2);
         })
-    })
+    })                   
 })
 
+//update category
 app.put('/category/:id', (req,res) => {
     const { id } = req.params;
-    const { name } = req.body;
-    const data = {
-        name: name
-    }
-    var sql = `UPDATE category SET ? WHERE idcat = ${id}`;
+    const { namacategory } = req.body;
+    const data = { namacategory }    
+    var sql = `UPDATE tablecategory SET ? WHERE id = ${id};`
     conn.query(sql, data, (err, results) => {
-        if(err) throw err;
-        sql = `SELECT * FROM category`;
-        conn.query(sql, (err1, results1) => {
-            if(err1) throw err1;
-            res.send(results1);
+        if (err) throw err;
+        sql = "SELECT * FROM tablecategory"
+        conn.query(sql,(err,results2)=>{
+            if(err)throw err;
+            res.send(results2);
         })
     })
 })
 
-app.delete('/category/:id', (req,res) => {
-    const { id } = req.params;
-    const sql = `DELETE FROM category where idcat = ${id}`;
+//delete category
+app.delete('/category/:id', (req, res) => {
+    const { id } = req.params
+    var sql = `DELETE c.* FROM tablecategory c WHERE c.id = '${id}';`
     conn.query(sql, (err, results) => {
-        if(err) throw err;
-        sql = `DELETE FROM bookcat where catid = ${id}`;
-        conn.query(sql, (err1, results1) => {
-            if(err1) throw err1;
-            sql = `SELECT * FROM category`;
-            conn.query(sql, (err2, results2) => {
-                if(err2) throw err2;
-                res.send(results2);
+        if(err) throw err;    
+        var sql = `SELECT * FROM tablecategory;`;
+        conn.query(sql,(err,results) => {
+            if(err) throw err;
+                res.send(results);  
+        })          
+    })    
+})
+
+//login
+app.post('/login', (req, res) => {
+    const { email, password } = req.body
+    const data = { email, password }
+    var sql = `SELECT * FROM tableuser WHERE email = '${email}' AND password = '${password}';`
+    conn.query(sql, data, (err, user) => {
+        if (err) throw err;
+        if (user.length == 0 ) {
+            res.send({ err: "Wrong Password or Username!" })
+        }
+        else {
+            res.send(user)
+        }
+    })
+})
+
+//register
+app.post('/register', (req, res) => {
+    const { username, email, password, role } = req.body
+    const data = { username, email, password, role }
+    var sql = `SELECT * FROM tableuser WHERE email = '${email}';` 
+    conn.query(sql, data, (err, user) => {
+        if (err) throw err;
+        if (user.length == 0 ) {
+            sql = `INSERT INTO tableuser SET ?`
+            conn.query(sql, data, (err, results) => {
+                if (err) throw err;
+                res.send(data)
             })
-        })
+        }
+        else {
+            res.send({ err: "Email already registered!"})
+        }
     })
 })
 
