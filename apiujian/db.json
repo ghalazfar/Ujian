@@ -457,6 +457,7 @@
       "title": "Crazy Rich Asian",
       "desc": "This contemporary romantic comedy, based on a global bestseller, follows native New Yorker Rachel Chu to Singapore to meet her boyfriend's family. ",
       "img": "http://digitalspyuk.cdnds.net/18/17/980x490/landscape-1524493556-crazyrichasians.jpg",
+      "imdb": "https://www.imdb.com/title/tt3104988/",
       "shift": [
         {
           "id": "1",
@@ -479,12 +480,12 @@
             {
               "id": "4",
               "nama": "A4",
-              "booked": "selected"
+              "booked": "empty"
             },
             {
               "id": "5",
               "nama": "A5",
-              "booked": "selected"
+              "booked": "empty"
             },
             {
               "id": "6",
@@ -534,12 +535,12 @@
             {
               "id": "15",
               "nama": "B5",
-              "booked": "booked"
+              "booked": "empty"
             },
             {
               "id": "16",
               "nama": "B6",
-              "booked": "booked"
+              "booked": "empty"
             },
             {
               "id": "17",
@@ -579,32 +580,32 @@
             {
               "id": "3",
               "nama": "A3",
-              "booked": "booked"
+              "booked": "empty"
             },
             {
               "id": "4",
               "nama": "A4",
-              "booked": "booked"
+              "booked": "empty"
             },
             {
               "id": "5",
               "nama": "A5",
-              "booked": "booked"
+              "booked": "empty"
             },
             {
               "id": "6",
               "nama": "A6",
-              "booked": "booked"
+              "booked": "empty"
             },
             {
               "id": "7",
               "nama": "A7",
-              "booked": "booked"
+              "booked": "empty"
             },
             {
               "id": "8",
               "nama": "A8",
-              "booked": "booked"
+              "booked": "empty"
             },
             {
               "id": "9",
@@ -644,7 +645,7 @@
             {
               "id": "16",
               "nama": "B6",
-              "booked": "booked"
+              "booked": "empty"
             },
             {
               "id": "17",
@@ -668,8 +669,7 @@
             }
           ]
         }
-      ],
-      "imdb": "https://www.imdb.com/title/tt3104988/"
+      ]
     }
   ]
 }
