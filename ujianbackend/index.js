@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const nodemailer = require('nodemailer')
 const xoauth2 = require('xoauth2')
 const url = bodyParser.urlencoded({ extended: false})
-const port = 4000
+const port = 2000
 const mysql = require('mysql')
 
 app.use(url)
@@ -134,21 +134,80 @@ app.delete('/books/:id', (req, res) => {
     })    
 })
 
-app.put('/books/:id', (req, res) => {
-    const { id } = req.params
-    var sql = `DELETE FROM book b 
-    JOIN bookcat bc 
-    ON b.id = bc.bookid 
-    WHERE b.id = ${id};`
+app.put('/books/:id', (req,res) => {
+    const { id } = req.params;
+    const { title, author, status, catid } = req.body;
+    const data = { 
+        title: title,
+        author: author,
+        status: status
+    }
+    var sql = `UPDATE books SET ? WHERE idbook = ${id}`;
+    conn.query(sql, data, (err, results) => {
+        if(err) throw err;
+        sql = `DELETE FROM bookcat WHERE bookid = ${id}`;
+        conn.query(sql, (err1, results1) => {
+            if(err1) throw err1;
+            if(catid.length !== 0) {
+                var sql2 = "INSERT INTO bookcat (bookid, catid) VALUES ?"
+                var value = []
+                for(var i in catid) {  
+                    value.push([id, catid[i]])
+                }
+                conn.query(sql2, [value], (err, results2) => {
+                    if (err) throw err;
+                    sql = "SELECT * FROM books"
+                    conn.query(sql,(err,results3)=>{
+                        if(err)throw err;
+                        res.send(results3);
+                    })
+                })     
+                  
+            }   
+            else {
+                sql = `SELECT * FROM books;`;
+                conn.query(sql, (err2, results2) => {
+                    if(err2) throw err2;
+                    
+                    res.send(results2);
+                })
+            }
+        })
+    })
+})
+
+app.put('/category/:id', (req,res) => {
+    const { id } = req.params;
+    const { name } = req.body;
+    const data = {
+        name: name
+    }
+    var sql = `UPDATE category SET ? WHERE idcat = ${id}`;
+    conn.query(sql, data, (err, results) => {
+        if(err) throw err;
+        sql = `SELECT * FROM category`;
+        conn.query(sql, (err1, results1) => {
+            if(err1) throw err1;
+            res.send(results1);
+        })
+    })
+})
+
+app.delete('/category/:id', (req,res) => {
+    const { id } = req.params;
+    const sql = `DELETE FROM category where idcat = ${id}`;
     conn.query(sql, (err, results) => {
-        if(err) throw err;      
-  
-        var sql = `SELECT * FROM books;`;
-        conn.query(sql,(err,results) => {
-            if(err) throw err;
-                res.send(results);  
-        })          
-    })    
+        if(err) throw err;
+        sql = `DELETE FROM bookcat where catid = ${id}`;
+        conn.query(sql, (err1, results1) => {
+            if(err1) throw err1;
+            sql = `SELECT * FROM category`;
+            conn.query(sql, (err2, results2) => {
+                if(err2) throw err2;
+                res.send(results2);
+            })
+        })
+    })
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}!`))
