@@ -1,0 +1,675 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "Andi",
+      "email": "andi@gmail.com",
+      "password": "password"
+    },
+    {
+      "username": "Budi",
+      "email": "budi@gmail.com",
+      "password": "hunter12",
+      "id": 2
+    }
+  ],
+  "movies": [
+    {
+      "id": "1",
+      "title": "The Meg",
+      "desc": "After escaping an attack by what he claims was a 70-foot shark, Jonas Taylor must confront his fears to save those trapped in a sunken submersible.",
+      "img": "https://9to5toys.com/wp-content/uploads/sites/5/2018/08/The-Meg.jpg",
+      "imdb": "https://www.imdb.com/title/tt4779682/",
+      "shift": [
+        {
+          "id": "1",
+          "kursi": [
+            {
+              "id": "1",
+              "nama": "A1",
+              "booked": "empty"
+            },
+            {
+              "id": "2",
+              "nama": "A2",
+              "booked": "empty"
+            },
+            {
+              "id": "3",
+              "nama": "A3",
+              "booked": "empty"
+            },
+            {
+              "id": "4",
+              "nama": "A4",
+              "booked": "empty"
+            },
+            {
+              "id": "5",
+              "nama": "A5",
+              "booked": "empty"
+            },
+            {
+              "id": "6",
+              "nama": "A6",
+              "booked": "empty"
+            },
+            {
+              "id": "7",
+              "nama": "A7",
+              "booked": "empty"
+            },
+            {
+              "id": "8",
+              "nama": "A8",
+              "booked": "empty"
+            },
+            {
+              "id": "9",
+              "nama": "A9",
+              "booked": "empty"
+            },
+            {
+              "id": "10",
+              "nama": "A10",
+              "booked": "empty"
+            },
+            {
+              "id": "11",
+              "nama": "B1",
+              "booked": "empty"
+            },
+            {
+              "id": "12",
+              "nama": "B2",
+              "booked": "empty"
+            },
+            {
+              "id": "13",
+              "nama": "B3",
+              "booked": "empty"
+            },
+            {
+              "id": "14",
+              "nama": "B4",
+              "booked": "empty"
+            },
+            {
+              "id": "15",
+              "nama": "B5",
+              "booked": "empty"
+            },
+            {
+              "id": "16",
+              "nama": "B6",
+              "booked": "empty"
+            },
+            {
+              "id": "17",
+              "nama": "B7",
+              "booked": "empty"
+            },
+            {
+              "id": "18",
+              "nama": "B8",
+              "booked": "empty"
+            },
+            {
+              "id": "19",
+              "nama": "B9",
+              "booked": "empty"
+            },
+            {
+              "id": "20",
+              "nama": "B10",
+              "booked": "empty"
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "kursi": [
+            {
+              "id": "1",
+              "nama": "A1",
+              "booked": "empty"
+            },
+            {
+              "id": "2",
+              "nama": "A2",
+              "booked": "empty"
+            },
+            {
+              "id": "3",
+              "nama": "A3",
+              "booked": "empty"
+            },
+            {
+              "id": "4",
+              "nama": "A4",
+              "booked": "empty"
+            },
+            {
+              "id": "5",
+              "nama": "A5",
+              "booked": "empty"
+            },
+            {
+              "id": "6",
+              "nama": "A6",
+              "booked": "empty"
+            },
+            {
+              "id": "7",
+              "nama": "A7",
+              "booked": "empty"
+            },
+            {
+              "id": "8",
+              "nama": "A8",
+              "booked": "empty"
+            },
+            {
+              "id": "9",
+              "nama": "A9",
+              "booked": "empty"
+            },
+            {
+              "id": "10",
+              "nama": "A10",
+              "booked": "empty"
+            },
+            {
+              "id": "11",
+              "nama": "B1",
+              "booked": "empty"
+            },
+            {
+              "id": "12",
+              "nama": "B2",
+              "booked": "empty"
+            },
+            {
+              "id": "13",
+              "nama": "B3",
+              "booked": "empty"
+            },
+            {
+              "id": "14",
+              "nama": "B4",
+              "booked": "empty"
+            },
+            {
+              "id": "15",
+              "nama": "B5",
+              "booked": "empty"
+            },
+            {
+              "id": "16",
+              "nama": "B6",
+              "booked": "empty"
+            },
+            {
+              "id": "17",
+              "nama": "B7",
+              "booked": "empty"
+            },
+            {
+              "id": "18",
+              "nama": "B8",
+              "booked": "empty"
+            },
+            {
+              "id": "19",
+              "nama": "B9",
+              "booked": "empty"
+            },
+            {
+              "id": "20",
+              "nama": "B10",
+              "booked": "empty"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Mile 22",
+      "desc": "An elite American intelligence officer, aided by a top-secret tactical command unit, tries to smuggle a mysterious police officer with sensitive information out of the country. ",
+      "img": "https://img-www.tf-cdn.com/movie/2/mile-22-2018.jpeg",
+      "imdb": "https://www.imdb.com/title/tt4560436/",
+      "shift": [
+        {
+          "id": "1",
+          "kursi": [
+            {
+              "id": "1",
+              "nama": "A1",
+              "booked": "empty"
+            },
+            {
+              "id": "2",
+              "nama": "A2",
+              "booked": "empty"
+            },
+            {
+              "id": "3",
+              "nama": "A3",
+              "booked": "empty"
+            },
+            {
+              "id": "4",
+              "nama": "A4",
+              "booked": "empty"
+            },
+            {
+              "id": "5",
+              "nama": "A5",
+              "booked": "empty"
+            },
+            {
+              "id": "6",
+              "nama": "A6",
+              "booked": "empty"
+            },
+            {
+              "id": "7",
+              "nama": "A7",
+              "booked": "empty"
+            },
+            {
+              "id": "8",
+              "nama": "A8",
+              "booked": "empty"
+            },
+            {
+              "id": "9",
+              "nama": "A9",
+              "booked": "empty"
+            },
+            {
+              "id": "10",
+              "nama": "A10",
+              "booked": "empty"
+            },
+            {
+              "id": "11",
+              "nama": "B1",
+              "booked": "empty"
+            },
+            {
+              "id": "12",
+              "nama": "B2",
+              "booked": "empty"
+            },
+            {
+              "id": "13",
+              "nama": "B3",
+              "booked": "empty"
+            },
+            {
+              "id": "14",
+              "nama": "B4",
+              "booked": "empty"
+            },
+            {
+              "id": "15",
+              "nama": "B5",
+              "booked": "empty"
+            },
+            {
+              "id": "16",
+              "nama": "B6",
+              "booked": "empty"
+            },
+            {
+              "id": "17",
+              "nama": "B7",
+              "booked": "empty"
+            },
+            {
+              "id": "18",
+              "nama": "B8",
+              "booked": "empty"
+            },
+            {
+              "id": "19",
+              "nama": "B9",
+              "booked": "empty"
+            },
+            {
+              "id": "20",
+              "nama": "B10",
+              "booked": "empty"
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "kursi": [
+            {
+              "id": "1",
+              "nama": "A1",
+              "booked": "empty"
+            },
+            {
+              "id": "2",
+              "nama": "A2",
+              "booked": "empty"
+            },
+            {
+              "id": "3",
+              "nama": "A3",
+              "booked": "empty"
+            },
+            {
+              "id": "4",
+              "nama": "A4",
+              "booked": "empty"
+            },
+            {
+              "id": "5",
+              "nama": "A5",
+              "booked": "empty"
+            },
+            {
+              "id": "6",
+              "nama": "A6",
+              "booked": "empty"
+            },
+            {
+              "id": "7",
+              "nama": "A7",
+              "booked": "empty"
+            },
+            {
+              "id": "8",
+              "nama": "A8",
+              "booked": "empty"
+            },
+            {
+              "id": "9",
+              "nama": "A9",
+              "booked": "empty"
+            },
+            {
+              "id": "10",
+              "nama": "A10",
+              "booked": "empty"
+            },
+            {
+              "id": "11",
+              "nama": "B1",
+              "booked": "empty"
+            },
+            {
+              "id": "12",
+              "nama": "B2",
+              "booked": "empty"
+            },
+            {
+              "id": "13",
+              "nama": "B3",
+              "booked": "empty"
+            },
+            {
+              "id": "14",
+              "nama": "B4",
+              "booked": "empty"
+            },
+            {
+              "id": "15",
+              "nama": "B5",
+              "booked": "empty"
+            },
+            {
+              "id": "16",
+              "nama": "B6",
+              "booked": "empty"
+            },
+            {
+              "id": "17",
+              "nama": "B7",
+              "booked": "empty"
+            },
+            {
+              "id": "18",
+              "nama": "B8",
+              "booked": "empty"
+            },
+            {
+              "id": "19",
+              "nama": "B9",
+              "booked": "empty"
+            },
+            {
+              "id": "20",
+              "nama": "B10",
+              "booked": "empty"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Crazy Rich Asian",
+      "desc": "This contemporary romantic comedy, based on a global bestseller, follows native New Yorker Rachel Chu to Singapore to meet her boyfriend's family. ",
+      "img": "http://digitalspyuk.cdnds.net/18/17/980x490/landscape-1524493556-crazyrichasians.jpg",
+      "shift": [
+        {
+          "id": "1",
+          "kursi": [
+            {
+              "id": "1",
+              "nama": "A1",
+              "booked": "empty"
+            },
+            {
+              "id": "2",
+              "nama": "A2",
+              "booked": "empty"
+            },
+            {
+              "id": "3",
+              "nama": "A3",
+              "booked": "empty"
+            },
+            {
+              "id": "4",
+              "nama": "A4",
+              "booked": "selected"
+            },
+            {
+              "id": "5",
+              "nama": "A5",
+              "booked": "selected"
+            },
+            {
+              "id": "6",
+              "nama": "A6",
+              "booked": "empty"
+            },
+            {
+              "id": "7",
+              "nama": "A7",
+              "booked": "empty"
+            },
+            {
+              "id": "8",
+              "nama": "A8",
+              "booked": "empty"
+            },
+            {
+              "id": "9",
+              "nama": "A9",
+              "booked": "empty"
+            },
+            {
+              "id": "10",
+              "nama": "A10",
+              "booked": "empty"
+            },
+            {
+              "id": "11",
+              "nama": "B1",
+              "booked": "empty"
+            },
+            {
+              "id": "12",
+              "nama": "B2",
+              "booked": "empty"
+            },
+            {
+              "id": "13",
+              "nama": "B3",
+              "booked": "empty"
+            },
+            {
+              "id": "14",
+              "nama": "B4",
+              "booked": "empty"
+            },
+            {
+              "id": "15",
+              "nama": "B5",
+              "booked": "booked"
+            },
+            {
+              "id": "16",
+              "nama": "B6",
+              "booked": "booked"
+            },
+            {
+              "id": "17",
+              "nama": "B7",
+              "booked": "empty"
+            },
+            {
+              "id": "18",
+              "nama": "B8",
+              "booked": "empty"
+            },
+            {
+              "id": "19",
+              "nama": "B9",
+              "booked": "empty"
+            },
+            {
+              "id": "20",
+              "nama": "B10",
+              "booked": "empty"
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "kursi": [
+            {
+              "id": "1",
+              "nama": "A1",
+              "booked": "empty"
+            },
+            {
+              "id": "2",
+              "nama": "A2",
+              "booked": "empty"
+            },
+            {
+              "id": "3",
+              "nama": "A3",
+              "booked": "booked"
+            },
+            {
+              "id": "4",
+              "nama": "A4",
+              "booked": "booked"
+            },
+            {
+              "id": "5",
+              "nama": "A5",
+              "booked": "booked"
+            },
+            {
+              "id": "6",
+              "nama": "A6",
+              "booked": "booked"
+            },
+            {
+              "id": "7",
+              "nama": "A7",
+              "booked": "booked"
+            },
+            {
+              "id": "8",
+              "nama": "A8",
+              "booked": "booked"
+            },
+            {
+              "id": "9",
+              "nama": "A9",
+              "booked": "empty"
+            },
+            {
+              "id": "10",
+              "nama": "A10",
+              "booked": "empty"
+            },
+            {
+              "id": "11",
+              "nama": "B1",
+              "booked": "empty"
+            },
+            {
+              "id": "12",
+              "nama": "B2",
+              "booked": "empty"
+            },
+            {
+              "id": "13",
+              "nama": "B3",
+              "booked": "empty"
+            },
+            {
+              "id": "14",
+              "nama": "B4",
+              "booked": "empty"
+            },
+            {
+              "id": "15",
+              "nama": "B5",
+              "booked": "empty"
+            },
+            {
+              "id": "16",
+              "nama": "B6",
+              "booked": "booked"
+            },
+            {
+              "id": "17",
+              "nama": "B7",
+              "booked": "empty"
+            },
+            {
+              "id": "18",
+              "nama": "B8",
+              "booked": "empty"
+            },
+            {
+              "id": "19",
+              "nama": "B9",
+              "booked": "empty"
+            },
+            {
+              "id": "20",
+              "nama": "B10",
+              "booked": "empty"
+            }
+          ]
+        }
+      ],
+      "imdb": "https://www.imdb.com/title/tt3104988/"
+    }
+  ]
+}
