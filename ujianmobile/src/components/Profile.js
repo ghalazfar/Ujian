@@ -18,9 +18,9 @@ class Profile extends Component {
         this.props.imageDataPost(this.props.caption, this.props.imageurl)
     }
 
-    onLogoutPress = () => {
-        this.props.logoutUser()
+    onLogoutPress = () => {        
         this.props.screenProps.rootNavigation.navigate('Login');
+        this.props.logoutUser()
     }
 
     render() {
@@ -28,7 +28,10 @@ class Profile extends Component {
             <View>
                 <Header
                     placement="left"
-                    centerComponent={{ text: 'Profile', style: { color: '#fff' } }}
+                    centerComponent={{ 
+                        text: this.props.emailUser, 
+                        style: { color: '#fff' } 
+                    }}
                     rightComponent={{ 
                         icon: 'home', 
                         color: '#fff', 
@@ -39,7 +42,7 @@ class Profile extends Component {
                     <CardSection>
                         <Input 
                             label="Caption" 
-                            placeholder="Insert caption..."
+                            placeholder="The Caption"
                             value={this.props.caption}
                             onChangeText={this.onCaptionChange} 
                         />
@@ -47,7 +50,7 @@ class Profile extends Component {
                     <CardSection>
                         <Input 
                             label="Image" 
-                            placeholder="Insert image url..." 
+                            placeholder="Image Url..." 
                             value={this.props.imageurl}
                             onChangeText={this.onImageChange}
                         />
@@ -65,7 +68,12 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
     const { caption, imageurl } = state.post;
-    return { caption, imageurl };
+    var emailUser = ''
+    if (state.auth.user!==null){
+        const { email } = state.auth.user.user;
+        emailUser = email
+    }
+    return { caption, imageurl, emailUser };
 };
 
 export default connect(mapStateToProps, { postImageForm, imageDataPost, logoutUser })(Profile);

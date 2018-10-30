@@ -36,6 +36,10 @@ const styles = {
     imageStyle: {
         height: 700,
         flex: 1
+    },
+    captionEmailStyle: {
+        fontWeight: 'bold',
+        marginRight: 50
     }
 }
 
@@ -54,6 +58,9 @@ const Post = ({ caption, imageurl, email }) => {
                 <Image style={styles.imageStyle} source={{ uri: imageurl }} />
             </CardSection>
             <CardSection>
+                <Text style={styles.captionEmailStyle}>
+                    {email}
+                </Text>
                 <Text>
                     {caption}
                 </Text>

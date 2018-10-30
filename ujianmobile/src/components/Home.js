@@ -26,10 +26,6 @@ class Home extends Component {
     render() {
         return (
             <ScrollView>
-                <Header
-                    placement="left"
-                    centerComponent={{ text: 'Home', style: { color: '#fff' } }}
-                />
                 {this.renderPost()}
             </ScrollView>
         );
